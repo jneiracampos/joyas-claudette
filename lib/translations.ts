@@ -100,7 +100,7 @@ export const translations = {
     // About Page
     'about.title': 'ACERCA DE LA ARTISTA',
     'about.bio.title': 'La Historia Detrás de Joyas Claudette',
-    'about.bio.text': 'Mi nombre es María Claudia Campos Muñoz, administradora de empresas de la Universidad del Rosario. Después de pensionarme, comencé un nuevo capítulo en mi vida con la joyería artesanal. Este camino inició tras la muerte de mi hermana Cookies, lo que me llevó a encontrar consuelo y propósito en la creación de piezas hechas a mano. Mi primera clase fue en la tienda Bamba, donde la profesora Martha me enseñó las técnicas.',
+    'about.bio.text': 'Mi nombre es María Claudia Campos Muñoz, administradora de empresas de la Universidad del Rosario. Después de pensionarme, comencé un nuevo capítulo en mi vida con la joyería artesanal. Este camino inició tras la muerte de mi hermana Cookies, lo que me llevó a encontrar consuelo y propósito en la creación de piezas hechas a mano. Mi primera clase fue en la tienda Bamba (Usaquén), donde la profesora Martha me enseñó las técnicas.',
     'about.mission.title': 'Nuestra Misión',
     'about.mission.text': 'Creamos joyería única que combina elegancia con las propiedades curativas y energéticas de las piedras naturales. Cada pieza está diseñada para la mujer sofisticada que valora la autenticidad y la calidad.',
     'about.mission.card': 'Crear piezas únicas que combinan minimalismo, elegancia, sobriedad y propiedades energéticas naturales.',
