@@ -43,6 +43,12 @@ export default function Header() {
             >
               {t('nav.shopAll')}
             </Link>
+            <Link 
+              href="/about" 
+              className="text-sm tracking-wide text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              {t('nav.about')}
+            </Link>
           </nav>
 
           {/* Right side icons */}
@@ -97,6 +103,13 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t('nav.shopAll')}
+              </Link>
+              <Link 
+                href="/about" 
+                className="text-sm tracking-wide text-gray-700 hover:text-gray-900"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t('nav.about')}
               </Link>
             </nav>
           </div>
