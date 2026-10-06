@@ -31,7 +31,7 @@ Run `typecheck` and `lint` after every change.
 - Never inline the WhatsApp number or the WhatsApp SVG; use `buildWhatsAppUrl()` and `<WhatsAppIcon />`.
 - Prices are displayed with `formatPrice(price, currency)`: USD as `$295.00`, COP as `$400.000` (no decimals).
 - To add a product, append to `lib/data/products/necklaces.ts` or `bracelets.ts` (unique `id`, category `necklaces` | `bracelets`). `name`, `description` and `materials` are `{ en, es }` objects; render them with `localize()` from `useLanguage()`. Set `currency` explicitly.
-- Product photos go in `public/images/products/<necklaces|bracelets>/` (square, no text baked in) and are referenced as `/images/products/<category>/<file>` in `images`. A product with `images: []` shows the gray placeholder.
+- Product photos go in `public/images/products/<necklaces|bracelets>/` (portrait 3:4 frames; two photos per product: the piece alone first, then on a model; no text baked in; name them like `coin-pearl-1.jpeg`, `coin-pearl-2.jpeg`) and are referenced as `/images/products/<category>/<file>` in `images`. A product with `images: []` shows the gray placeholder.
 - Next 16: `params` is a Promise. In client pages unwrap with `use(params)`; in server pages `await` it.
 - Styling is Tailwind utility classes only; do not change the visual design without being asked.
 
@@ -39,5 +39,5 @@ Run `typecheck` and `lint` after every change.
 
 - `<html lang="en">` is static although the UI can be Spanish.
 - A few strings are hard-coded: the About page CTA (Spanish), "Image placeholder", "Product Image", "OUT OF STOCK", the ProductGrid empty message.
-- Only `necklace-001` is a real product; the other 11 products (and their prices, in USD) are placeholders. Cards show `images[0]`; the detail page shows all images as a carousel (`ProductGallery`).
+- Only `necklace-001` and `necklace-002` are real products; the other 10 products (and their prices, in USD) are placeholders. Cards show `images[0]`; the detail page shows all images as a carousel (`ProductGallery`).
 - No per-page metadata beyond the root layout; no sitemap/robots.
