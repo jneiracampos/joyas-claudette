@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '@/types';
 import { useLanguage } from '@/context/LanguageContext';
@@ -17,11 +18,12 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const { t } = useLanguage();
+  const { t, localize } = useLanguage();
+  const name = localize(product.name);
   
   const handleWhatsAppContact = (e: React.MouseEvent) => {
     e.preventDefault();
-    const message = `${t('whatsapp.product')} ${product.name} - ${formatPrice(product.price)}`;
+    const message = `${t('whatsapp.product')} ${name} - ${formatPrice(product.price, product.currency)}`;
     window.open(buildWhatsAppUrl(message), '_blank');
   };
 
@@ -29,10 +31,19 @@ export default function ProductCard({ product }: ProductCardProps) {
     <div className="group block">
       <Link href={`/products/${product.id}`}>
         <div className="relative aspect-square overflow-hidden bg-gray-100 mb-4">
-          {/* Placeholder for product image */}
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-            <span className="text-gray-400 text-sm">Image placeholder</span>
-          </div>
+          {product.images[0] ? (
+            <Image
+              src={product.images[0]}
+              alt={name}
+              fill
+              sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+              <span className="text-gray-400 text-sm">Image placeholder</span>
+            </div>
+          )}
           
           {/* Hover overlay */}
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-5 transition-opacity" />
@@ -47,10 +58,10 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className="space-y-1">
           <h3 className="text-sm text-gray-900 group-hover:text-gray-600 transition-colors">
-            {product.name}
+            {name}
           </h3>
           <p className="text-sm text-gray-600">
-            {formatPrice(product.price)}
+            {formatPrice(product.price, product.currency)}
           </p>
           
           {/* Color indicators */}

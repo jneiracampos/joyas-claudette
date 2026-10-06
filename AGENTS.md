@@ -29,8 +29,9 @@ Run `typecheck` and `lint` after every change.
 - All user-facing text goes through `t('key')`. Add the key to **both** `en` and `es` in `lib/translations.ts`.
 - Language is detected client-side (localStorage `language`, else browser language). SSR/hydration renders Spanish first, by design.
 - Never inline the WhatsApp number or the WhatsApp SVG; use `buildWhatsAppUrl()` and `<WhatsAppIcon />`.
-- Prices are USD and displayed with `formatPrice()`.
-- To add a product, append to `lib/data/products.ts` (unique `id`, category `necklaces` | `bracelets`). Images live in `public/`.
+- Prices are displayed with `formatPrice(price, currency)`: USD as `$295.00`, COP as `$400.000` (no decimals).
+- To add a product, append to `lib/data/products.ts` (unique `id`, category `necklaces` | `bracelets`). `name`, `description` and `materials` are `{ en, es }` objects; render them with `localize()` from `useLanguage()`. Set `currency` explicitly.
+- Product photos go in `public/images/products/` (square, no text baked in) and are referenced as `/images/products/<file>` in `images`. A product with `images: []` shows the gray placeholder.
 - Next 16: `params` is a Promise. In client pages unwrap with `use(params)`; in server pages `await` it.
 - Styling is Tailwind utility classes only; do not change the visual design without being asked.
 
@@ -38,5 +39,5 @@ Run `typecheck` and `lint` after every change.
 
 - `<html lang="en">` is static although the UI can be Spanish.
 - A few strings are hard-coded: the About page CTA (Spanish), "Image placeholder", "Product Image", "OUT OF STOCK", the ProductGrid empty message.
-- Product images are placeholders; `Product.images` is unused.
+- Only `necklace-001` is a real product; the other 11 products (and their prices, in USD) are placeholders. Product detail only shows `images[0]`.
 - No per-page metadata beyond the root layout; no sitemap/robots.

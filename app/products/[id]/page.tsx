@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { use } from 'react';
 import { notFound } from 'next/navigation';
 import { getProductById } from '@/lib/data/products';
@@ -16,14 +17,14 @@ import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const product = getProductById(id);
-  const { t } = useLanguage();
+  const { t, localize } = useLanguage();
 
   if (!product) {
     notFound();
   }
 
   const handleContactWhatsApp = () => {
-    const message = `${t('whatsapp.product')} ${product.name} - ${formatPrice(product.price)}`;
+    const message = `${t('whatsapp.product')} ${localize(product.name)} - ${formatPrice(product.price, product.currency)}`;
     window.open(buildWhatsAppUrl(message), '_blank');
   };
 
@@ -31,24 +32,35 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Product Image */}
-        <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-          <span className="text-gray-400">Product Image</span>
+        <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+          {product.images[0] ? (
+            <Image
+              src={product.images[0]}
+              alt={localize(product.name)}
+              fill
+              priority
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+          ) : (
+            <span className="text-gray-400">Product Image</span>
+          )}
         </div>
 
         {/* Product Info */}
         <div className="flex flex-col space-y-6">
           <div>
             <h1 className="text-3xl font-light tracking-wide text-gray-900 mb-2">
-              {product.name}
+              {localize(product.name)}
             </h1>
             <p className="text-2xl text-gray-900">
-              {formatPrice(product.price)}
+              {formatPrice(product.price, product.currency)}
             </p>
           </div>
 
           <div className="border-t border-gray-200 pt-6">
             <p className="text-gray-600 leading-relaxed">
-              {product.description}
+              {localize(product.description)}
             </p>
           </div>
 
@@ -60,7 +72,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
             <ul className="space-y-1">
               {product.materials.map((material, index) => (
                 <li key={index} className="text-sm text-gray-600">
-                  • {material}
+                  • {localize(material)}
                 </li>
               ))}
             </ul>

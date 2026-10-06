@@ -2,10 +2,13 @@
 
 import { createContext, useCallback, useContext, useMemo, useSyncExternalStore, ReactNode } from 'react';
 import { translations, Language, TranslationKey } from '@/lib/translations';
+import type { LocalizedText } from '@/types';
 
 interface LanguageContextType {
   language: Language;
   t: (key: TranslationKey) => string;
+  /** Pick the current language from a localized text */
+  localize: (text: LocalizedText) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -35,7 +38,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     [language],
   );
 
-  const value = useMemo(() => ({ language, t }), [language, t]);
+  const localize = useCallback((text: LocalizedText): string => text[language], [language]);
+
+  const value = useMemo(() => ({ language, t, localize }), [language, t, localize]);
 
   return (
     <LanguageContext.Provider value={value}>
