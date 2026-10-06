@@ -13,7 +13,7 @@ export const products: Product[] = [
       en: 'Handmade with natural baroque pearls. Silver clasp.',
       es: 'Hecho a mano con perlas naturales barrocas. Broche de plata.',
     },
-    price: 400000,
+    price: 600000,
     currency: 'COP',
     category: 'necklaces',
     images: ['/images/products/necklace-baroque-pearl.jpg'],
