@@ -18,7 +18,7 @@ export default function ProductGallery({ images, alt }: ProductGalleryProps) {
 
   if (count === 0) {
     return (
-      <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+      <div className="aspect-[3/4] bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
         <span className="text-gray-400">Product Image</span>
       </div>
     );
@@ -27,7 +27,7 @@ export default function ProductGallery({ images, alt }: ProductGalleryProps) {
   const go = (step: number) => setIndex((current) => (current + step + count) % count);
 
   return (
-    <div className="relative aspect-square bg-gray-100 overflow-hidden">
+    <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden">
       {images.map((src, i) => (
         <Image
           key={src}

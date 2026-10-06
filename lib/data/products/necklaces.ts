@@ -15,8 +15,8 @@ export const necklaces: Product[] = [
     currency: 'COP',
     category: 'necklaces',
     images: [
-      '/images/products/necklaces/baroque-pearl-1.jpg',
-      '/images/products/necklaces/baroque-pearl-2.jpg',
+      '/images/products/necklaces/baroque-pearl-1.jpeg',
+      '/images/products/necklaces/baroque-pearl-2.jpeg',
     ],
     materials: [
       { en: 'Natural Baroque Pearls', es: 'Perlas naturales barrocas' },
@@ -27,15 +27,21 @@ export const necklaces: Product[] = [
   },
   {
     id: 'necklace-002',
-    name: { en: 'Smoky Quartz Pendant', es: 'Colgante de Cuarzo Ahumado' },
-    description: { en: 'Natural smoky quartz stone on adjustable cord. A statement piece with earthy elegance.', es: 'Piedra natural de cuarzo ahumado en cordón ajustable. Una pieza llamativa de elegancia terrosa.' },
-    price: 225.00,
-    currency: 'USD',
+    name: { en: 'Coin Pearl Necklace', es: 'Collar de Perlas Tipo Moneda' },
+    description: {
+      en: 'Handmade with flat freshwater coin pearls. Silver clasp.',
+      es: 'Hecho a mano con perlas planas de agua dulce tipo moneda. Broche de plata.',
+    },
+    price: 600000,
+    currency: 'COP',
     category: 'necklaces',
-    images: [],
+    images: [
+      '/images/products/necklaces/coin-pearl-1.jpeg',
+      '/images/products/necklaces/coin-pearl-2.jpeg',
+    ],
     materials: [
-      { en: 'Smoky Quartz', es: 'Cuarzo ahumado' },
-      { en: 'Leather Cord', es: 'Cordón de cuero' },
+      { en: 'Freshwater Coin Pearls', es: 'Perlas de agua dulce tipo moneda' },
+      { en: 'Silver Clasp', es: 'Broche de plata' },
     ],
     inStock: true,
     featured: true,

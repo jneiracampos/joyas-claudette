@@ -29,7 +29,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="group block">
       <Link href={`/products/${product.id}`}>
-        <div className="relative aspect-square overflow-hidden bg-gray-100 mb-4">
+        <div className="relative aspect-[3/4] overflow-hidden bg-gray-100 mb-4">
           {product.images[0] ? (
             <Image
               src={product.images[0]}
