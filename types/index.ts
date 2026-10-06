@@ -23,5 +23,4 @@ export interface Product {
   materials: LocalizedText[];
   inStock: boolean;
   featured?: boolean;
-  colors?: string[];
 }

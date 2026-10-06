@@ -18,9 +18,6 @@ export const translations = {
     'home.featured.title': 'FEATURED PIECES',
     'home.featured.subtitle': 'Handpicked selections from our latest collection',
     'home.featured.viewAll': 'VIEW ALL',
-    'home.about.title': 'CRAFTED WITH PASSION',
-    'home.about.description': 'The pieces are designed and crafted with love. We seek the best quality semi-precious stones. Our designs are discreet, elegant, and are designed for a sophisticated woman.',
-    'home.about.cta': 'LEARN MORE',
 
     // About Page
     'about.title': 'ABOUT THE ARTIST',
@@ -46,7 +43,6 @@ export const translations = {
 
     // Product Page
     'product.materials': 'MATERIALS',
-    'product.colors': 'COLORS',
     'product.contact': 'CONTACT VIA WHATSAPP',
     'product.outOfStock': 'OUT OF STOCK',
     'product.info1': '• Handmade with love and dedication',
@@ -93,9 +89,6 @@ export const translations = {
     'home.featured.title': 'NUESTRAS MEJORES PIEZAS',
     'home.featured.subtitle': 'Selecciones especiales de nuestra última colección',
     'home.featured.viewAll': 'VER TODO',
-    'home.about.title': 'CREADAS CON PASIÓN',
-    'home.about.description': 'Las piezas están diseñadas y elaboradas con amor. Buscamos piedras semipreciosas de la mejor calidad. Nuestros diseños son discretos, elegantes, y están pensados para una mujer sofisticada.',
-    'home.about.cta': 'CONOCER MÁS',
 
     // About Page
     'about.title': 'ACERCA DE LA ARTISTA',
@@ -121,7 +114,6 @@ export const translations = {
 
     // Product Page
     'product.materials': 'MATERIALES',
-    'product.colors': 'COLORES',
     'product.contact': 'CONTACTAR POR WHATSAPP',
     'product.outOfStock': 'AGOTADO',
     'product.info1': '• Hecho a mano con amor y dedicación',

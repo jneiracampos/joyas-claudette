@@ -33,28 +33,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Collections */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <Link 
-              href="/collections/necklaces"
-              className="relative h-96 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center group overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity" />
-              <h2 className="text-3xl font-light tracking-wider text-gray-900 z-10">{t('nav.necklaces')}</h2>
-            </Link>
-            <Link 
-              href="/collections/bracelets"
-              className="relative h-96 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center group overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity" />
-              <h2 className="text-3xl font-light tracking-wider text-gray-900 z-10">{t('nav.bracelets')}</h2>
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Featured Products */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
@@ -75,24 +53,6 @@ export default function Home() {
               {t('home.featured.viewAll')}
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-light tracking-wider text-gray-900 mb-6">
-            {t('home.about.title')}
-          </h2>
-          <p className="text-gray-600 leading-relaxed mb-8">
-            {t('home.about.description')}
-          </p>
-          <Link
-            href="/about"
-            className="inline-block text-gray-900 text-sm tracking-wider hover:text-gray-600 transition-colors border-b border-gray-900"
-          >
-            {t('home.about.cta')}
-          </Link>
         </div>
       </section>
     </div>

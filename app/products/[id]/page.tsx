@@ -1,13 +1,12 @@
 'use client';
 
-import Image from 'next/image';
 import { use } from 'react';
 import { notFound } from 'next/navigation';
 import { getProductById } from '@/lib/data/products';
 import { useLanguage } from '@/context/LanguageContext';
 import { buildWhatsAppUrl } from '@/lib/config';
 import { formatPrice } from '@/lib/utils';
-import ColorSwatch from '@/components/ui/ColorSwatch';
+import ProductGallery from '@/components/products/ProductGallery';
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 
 /**
@@ -32,20 +31,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Product Image */}
-        <div className="relative aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-          {product.images[0] ? (
-            <Image
-              src={product.images[0]}
-              alt={localize(product.name)}
-              fill
-              priority
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover"
-            />
-          ) : (
-            <span className="text-gray-400">Product Image</span>
-          )}
-        </div>
+        <ProductGallery images={product.images} alt={localize(product.name)} />
 
         {/* Product Info */}
         <div className="flex flex-col space-y-6">
@@ -77,20 +63,6 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               ))}
             </ul>
           </div>
-
-          {/* Colors */}
-          {product.colors && product.colors.length > 0 && (
-            <div className="border-t border-gray-200 pt-6">
-              <h3 className="text-sm font-semibold text-gray-900 tracking-wider mb-3">
-                {t('product.colors')}
-              </h3>
-              <div className="flex space-x-2">
-                {product.colors.map((color, index) => (
-                  <ColorSwatch key={index} color={color} className="w-8 h-8 border-2 border-gray-300" />
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Contact via WhatsApp */}
           <div className="border-t border-gray-200 pt-6 space-y-4">

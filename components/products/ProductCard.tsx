@@ -6,7 +6,6 @@ import { Product } from '@/types';
 import { useLanguage } from '@/context/LanguageContext';
 import { buildWhatsAppUrl } from '@/lib/config';
 import { formatPrice } from '@/lib/utils';
-import ColorSwatch from '@/components/ui/ColorSwatch';
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 
 /**
@@ -63,15 +62,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           <p className="text-sm text-gray-600">
             {formatPrice(product.price, product.currency)}
           </p>
-          
-          {/* Color indicators */}
-          {product.colors && product.colors.length > 0 && (
-            <div className="flex space-x-1 pt-1">
-              {product.colors.slice(0, 3).map((color, index) => (
-                <ColorSwatch key={index} color={color} className="w-4 h-4 border border-gray-300" />
-              ))}
-            </div>
-          )}
         </div>
       </Link>
       

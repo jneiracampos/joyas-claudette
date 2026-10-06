@@ -25,7 +25,7 @@ npm run dev        # http://localhost:3000
 
 ## How it works
 
-- **Products** are static data in `lib/data/products.ts`. To add one, append an entry following the `Product` type in `types/index.ts`.
+- **Products** are static data in `lib/data/products/`. To add one, append an entry to `necklaces.ts` or `bracelets.ts` following the `Product` type in `types/index.ts`.
 - **Languages**: Spanish and English strings live in `lib/translations.ts`. The language is picked from `localStorage['language']` if set, otherwise from the browser language (Spanish if it starts with `es`, else English).
 - **WhatsApp**: the number and link builder are in `lib/config.ts`.
 
