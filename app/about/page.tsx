@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 
 /**
@@ -105,12 +106,12 @@ export default function AboutPage() {
           <p className="text-gray-300 mb-8 text-lg">
             Explora nuestra colección y descubre la joya que cuenta tu historia
           </p>
-          <a
+          <Link
             href="/collections/all"
             className="inline-block px-8 py-3 bg-white text-gray-900 tracking-wide hover:bg-gray-100 transition-colors"
           >
             VER COLECCIÓN
-          </a>
+          </Link>
         </div>
       </section>
     </div>

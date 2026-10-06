@@ -16,21 +16,3 @@ export interface Product {
   featured?: boolean;
   colors?: string[];
 }
-
-export interface CartItem {
-  product: Product;
-  quantity: number;
-}
-
-export interface Cart {
-  items: CartItem[];
-  total: number;
-}
-
-export interface FilterOptions {
-  category?: ProductCategory;
-  minPrice?: number;
-  maxPrice?: number;
-  material?: string;
-  inStockOnly?: boolean;
-}

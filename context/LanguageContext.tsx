@@ -1,43 +1,44 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { translations, Language } from '@/lib/translations';
+import { createContext, useCallback, useContext, useMemo, useSyncExternalStore, ReactNode } from 'react';
+import { translations, Language, TranslationKey } from '@/lib/translations';
 
 interface LanguageContextType {
   language: Language;
-  t: (key: string) => string;
+  t: (key: TranslationKey) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 /**
- * Detects the browser's language and returns 'es' or 'en'
+ * Detects the saved or browser language and returns 'es' or 'en'
  */
-function detectBrowserLanguage(): Language {
-  if (typeof window === 'undefined') return 'es'; // Default to Spanish for SSR
-  
-  const browserLang = navigator.language.toLowerCase();
-  
+function detectLanguage(): Language {
+  const savedLanguage = localStorage.getItem('language') as Language | null;
+  if (savedLanguage) return savedLanguage;
+
   // If browser language starts with 'es', use Spanish, otherwise English
-  return browserLang.startsWith('es') ? 'es' : 'en';
+  return navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en';
 }
 
+// The language never changes while the page is open, so there is nothing to subscribe to
+const subscribe = () => () => {};
+
+// Server and hydration render default to Spanish; the client then switches if needed
+const getServerLanguage = (): Language => 'es';
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('es');
+  const language = useSyncExternalStore(subscribe, detectLanguage, getServerLanguage);
 
-  useEffect(() => {
-    // Detect language on client side
-    const savedLanguage = localStorage.getItem('language') as Language;
-    const detectedLanguage = savedLanguage || detectBrowserLanguage();
-    setLanguageState(detectedLanguage);
-  }, []);
+  const t = useCallback(
+    (key: TranslationKey): string => (translations[language] as Record<string, string>)[key] || key,
+    [language],
+  );
 
-  const t = (key: string): string => {
-    return (translations[language] as Record<string, string>)[key] || key;
-  };
+  const value = useMemo(() => ({ language, t }), [language, t]);
 
   return (
-    <LanguageContext.Provider value={{ language, t }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );

@@ -167,13 +167,3 @@ export const getProductsByCategory = (category: Product['category']): Product[] 
 export const getProductById = (id: string): Product | undefined => {
   return products.find(product => product.id === id);
 };
-
-/**
- * Get all available categories
- */
-export const getCategories = (): Array<{ value: Product['category']; label: string }> => {
-  return [
-    { value: 'necklaces', label: 'Necklaces' },
-    { value: 'bracelets', label: 'Bracelets' },
-  ];
-};
