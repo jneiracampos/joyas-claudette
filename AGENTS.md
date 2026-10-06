@@ -23,7 +23,6 @@ Run `typecheck` and `lint` after every change.
 - `lib/navigation.ts` — `NAV_LINKS` used by both header menus
 - `lib/data/products.ts` — product catalog and lookup helpers
 - `lib/utils.ts` — `formatPrice()`
-- `docs/` — older design notes (partly stale: they mention a language toggle that does not exist)
 
 ## Conventions
 
