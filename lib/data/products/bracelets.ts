@@ -18,7 +18,6 @@ export const bracelets: Product[] = [
       { en: 'Sterling Silver', es: 'Plata esterlina' },
     ],
     inStock: true,
-    featured: true,
   },
   {
     id: 'bracelet-002',
@@ -47,7 +46,6 @@ export const bracelets: Product[] = [
       { en: '14K Gold Filled', es: 'Oro laminado 14K' },
     ],
     inStock: true,
-    featured: true,
   },
   {
     id: 'bracelet-004',
