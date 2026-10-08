@@ -4,7 +4,7 @@ Handcrafted-jewelry storefront. Next.js 16 (App Router) + React 19 + Tailwind 4,
 
 ## Commands
 
-- `npm run dev` — dev server
+- `npm run dev` — dev server. In this WSL setup Google Fonts fail with a TLS error (every page 500s); start it with `NEXT_TURBOPACK_EXPERIMENTAL_USE_SYSTEM_TLS_CERTS=1 npm run dev`
 - `npm run typecheck` — `tsc --noEmit`
 - `npm run lint` — ESLint (must pass with no errors)
 - `npm run build` — production build (fetches Google Fonts, needs network)
@@ -31,7 +31,14 @@ Run `typecheck` and `lint` after every change.
 - Never inline the WhatsApp number or the WhatsApp SVG; use `buildWhatsAppUrl()` and `<WhatsAppIcon />`.
 - Prices are displayed with `formatPrice(price, currency)`: USD as `$295.00`, COP as `$400.000` (no decimals).
 - To add a product, append to `lib/data/products/necklaces.ts` or `bracelets.ts` (unique `id`, category `necklaces` | `bracelets`). `name`, `description` and `materials` are `{ en, es }` objects; render them with `localize()` from `useLanguage()`. Set `currency` explicitly.
-- Product photos go in `public/images/products/<necklaces|bracelets>/` (portrait 3:4 frames; two photos per product: the piece alone first, then on a model; no text baked in; name them like `coin-pearl-1.jpeg`, `coin-pearl-2.jpeg`) and are referenced as `/images/products/<category>/<file>` in `images`. A product with `images: []` shows the gray placeholder.
+- Product photos go in `public/images/products/<necklaces|bracelets>/` and are referenced as `/images/products/<category>/<file>` in `images`. A product with `images: []` shows the gray placeholder. Photo rules (apply them automatically whenever the user adds photos):
+  - Extension is always `.jpeg` (convert/rename `.jpg`).
+  - Rename raw files (`product-3.jpg`, `PHOTO-...jpg`) to `<descriptive-product-name>-<n>.jpeg`, e.g. `coin-pearl-1.jpeg`, `mother-of-pearl-2.jpeg`, matching the product name. Order: the piece alone first, then on a model (a third photo is fine). No text baked in.
+  - Frames are portrait 3:4 with `object-cover`. Raw photos are usually ~9:16 and get cropped, so pad "piece alone" photos on a pure-white background to 3:4 (e.g. 960x1280) with PIL, centered, so nothing is cut off. Do not pad model photos (non-white backgrounds); check the corner pixels first.
+  - Delete any `*:Zone.Identifier` files (Windows/WSL download metadata) and never commit them.
+  - Add the product to `necklaces.ts`/`bracelets.ts` with real `{ en, es }` name/description/materials written from looking at the photos; if the user gave no price, use the same placeholder price as other real products and tell them it is a placeholder.
+- Product cards (`ProductCard`) and the detail page both use `ProductGallery`, so the carousel (arrows/dots) works on cards too; its controls call `preventDefault` so they never navigate. Keep that when editing either component.
+- "Featured pieces" on the home page (`NUESTRAS MEJORES PIEZAS`) are exactly the products with `featured: true`; when the user lists the pieces they want there, set `featured` on those and remove it from the rest.
 - Next 16: `params` is a Promise. In client pages unwrap with `use(params)`; in server pages `await` it.
 - Styling is Tailwind utility classes only; do not change the visual design without being asked.
 
@@ -39,5 +46,5 @@ Run `typecheck` and `lint` after every change.
 
 - `<html lang="en">` is static although the UI can be Spanish.
 - A few strings are hard-coded: the About page CTA (Spanish), "Image placeholder", "Product Image", "OUT OF STOCK", the ProductGrid empty message.
-- Only `necklace-001` and `necklace-002` are real products; the other 10 products (and their prices, in USD) are placeholders. Cards show `images[0]`; the detail page shows all images as a carousel (`ProductGallery`).
+- Necklaces `necklace-001` to `necklace-006` are real products (prices for 003-006 are placeholders at 600.000 COP); the 6 bracelets and their USD prices are placeholders. Cards show `images[0]`; the detail page shows all images as a carousel (`ProductGallery`).
 - No per-page metadata beyond the root layout; no sitemap/robots.
